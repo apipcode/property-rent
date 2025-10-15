@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../models/property.dart';
 import '../models/booking.dart';
 import '../providers/booking_provider.dart';
-import '../pages/booking_success_page.dart';
+import 'order_summary_page.dart';
 
 class BookingFormPage extends StatefulWidget {
   final Property property;
@@ -152,32 +152,22 @@ class _BookingFormPageState extends State<BookingFormPage> {
         return;
       }
 
-      // Create booking
-      final booking = Booking(
-        id: bookingProvider.generateBookingId(),
-        propertyId: widget.property.id,
-        propertyName: widget.property.name,
-        customerName: _nameController.text,
-        customerEmail: _emailController.text,
-        customerPhone: _phoneController.text,
-        startDate: startDateTime,
-        endDate: endDateTime,
-        duration: _duration,
-        totalPrice: _calculateTotalPrice(),
-        status: BookingStatus.pending,
-        createdAt: DateTime.now(),
-        notes: _notesController.text.isNotEmpty ? _notesController.text : null,
-      );
-
-      // Add booking
-      bookingProvider.addBooking(booking);
-
-      // Navigate to success page
+      // Lanjut ke Order Summary & Payment dengan membawa data lengkap
       if (mounted) {
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => BookingSuccessPage(booking: booking),
+            builder: (context) => OrderSummaryPage(
+              property: widget.property,
+              durationHours: _duration,
+              totalPrice: _calculateTotalPrice(),
+              customerName: _nameController.text,
+              customerEmail: _emailController.text,
+              customerPhone: _phoneController.text,
+              startDateTime: startDateTime,
+              endDateTime: endDateTime,
+              notes: _notesController.text.isNotEmpty ? _notesController.text : null,
+            ),
           ),
         );
       }
@@ -689,7 +679,7 @@ class _BookingFormPageState extends State<BookingFormPage> {
                           ),
                         )
                       : Text(
-                          'Konfirmasi Pemesanan',
+                          'Lanjut ke Ringkasan',
                           style: GoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

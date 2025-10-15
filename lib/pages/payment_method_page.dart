@@ -7,12 +7,24 @@ class PaymentMethodPage extends StatelessWidget {
   final Property property;
   final int durationHours;
   final double totalPrice;
+  final String customerName;
+  final String customerEmail;
+  final String customerPhone;
+  final DateTime startDateTime;
+  final DateTime endDateTime;
+  final String? notes;
 
   const PaymentMethodPage({
     super.key,
     required this.property,
     required this.durationHours,
     required this.totalPrice,
+    required this.customerName,
+    required this.customerEmail,
+    required this.customerPhone,
+    required this.startDateTime,
+    required this.endDateTime,
+    this.notes,
   });
 
   @override
@@ -49,6 +61,12 @@ class PaymentMethodPage extends StatelessWidget {
                       property: property,
                       durationHours: durationHours,
                       totalPrice: totalPrice,
+                      customerName: customerName,
+                      customerEmail: customerEmail,
+                      customerPhone: customerPhone,
+                      startDateTime: startDateTime,
+                      endDateTime: endDateTime,
+                      notes: notes,
                     ),
                   ),
                 );

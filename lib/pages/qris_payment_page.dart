@@ -10,12 +10,24 @@ class QrisPaymentPage extends StatelessWidget {
   final Property property;
   final int durationHours;
   final double totalPrice;
+  final String customerName;
+  final String customerEmail;
+  final String customerPhone;
+  final DateTime startDateTime;
+  final DateTime endDateTime;
+  final String? notes;
 
   const QrisPaymentPage({
     super.key,
     required this.property,
     required this.durationHours,
     required this.totalPrice,
+    required this.customerName,
+    required this.customerEmail,
+    required this.customerPhone,
+    required this.startDateTime,
+    required this.endDateTime,
+    this.notes,
   });
 
   @override
@@ -66,24 +78,22 @@ class QrisPaymentPage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Simulasikan pembayaran berhasil, buat Booking dan simpan di provider
                   final provider = Provider.of<BookingProvider>(context, listen: false);
-                  final start = DateTime.now();
-                  final end = start.add(Duration(hours: durationHours));
 
                   final booking = Booking(
                     id: provider.generateBookingId(),
                     propertyId: property.id,
                     propertyName: property.name,
-                    customerName: 'Guest',
-                    customerEmail: 'guest@example.com',
-                    customerPhone: '-',
-                    startDate: start,
-                    endDate: end,
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
+                    startDate: startDateTime,
+                    endDate: endDateTime,
                     duration: durationHours,
                     totalPrice: totalPrice,
                     status: BookingStatus.confirmed,
                     createdAt: DateTime.now(),
+                    notes: notes,
                   );
 
                   provider.addBooking(booking);

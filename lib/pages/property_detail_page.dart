@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/property.dart';
-import 'duration_page.dart';
+import 'booking_form_page.dart';
 
 class PropertyDetailPage extends StatefulWidget {
   final Property property;
@@ -50,7 +50,6 @@ class _PropertyDetailPageState extends State<PropertyDetailPage> {
                 child: IconButton(
                   icon: const Icon(Icons.favorite_border, color: Colors.white),
                   onPressed: () {
-                    // TODO: Implement favorite functionality
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Fitur favorit akan segera hadir!')),
                     );
@@ -428,7 +427,7 @@ class _PropertyDetailPageState extends State<PropertyDetailPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DurationPage(property: widget.property),
+                        builder: (context) => BookingFormPage(property: widget.property),
                       ),
                     );
                   }
