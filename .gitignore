@@ -4,10 +4,23 @@
 *.log
 *.pyc
 *.swp
+.DS_Store
+.atom/
+.build/
 .buildlog/
 .history
+.svn/
+.swiftpm/
+migrate_working_dir/
 
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
 
+# VS Code (keep for project-specific configs)
+# .vscode/
 
 # Flutter repo-specific
 /bin/cache/
@@ -33,18 +46,36 @@ analysis_benchmark.json
 
 # Flutter/Dart/Pub related
 **/doc/api/
+**/ios/Flutter/.last_build_id
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
-**/generated_plugin_registrant.dart
-.packages
+.pub-cache/
 .pub-preload-cache/
 .pub/
-build/
+/packages
+/packages.generated
+/pubspec.lock
+/build/
+/coverage/
+
+# Generated files
+**/generated_plugin_registrant.dart
 flutter_*.png
 linked_*.ds
 unlinked.ds
 unlinked_spec.ds
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
 
 # Android related
 **/android/**/gradle-wrapper.jar
@@ -106,9 +137,6 @@ unlinked_spec.ds
 
 # Coverage
 coverage/
-
-# Symbols
-app.*.symbols
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
